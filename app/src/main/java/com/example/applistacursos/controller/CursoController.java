@@ -13,7 +13,7 @@ public class CursoController {
     }
 
     public void salvarCurso(Curso curso) {
-        Toast.makeText(context, "Curso salvo: " + curso.getNomeCurso(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, curso.toString(), Toast.LENGTH_SHORT).show();
     }
 }
 

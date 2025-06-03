@@ -34,4 +34,9 @@ public class Pessoa {
     public void setTelefone(int telefone) {
         this.telefone = String.valueOf(telefone);
     }
+
+    @Override
+    public String toString() {
+        return "Nome completo= " + nome + " " + sobrenome + "\nTelefone= " + telefone;
+    }
 }

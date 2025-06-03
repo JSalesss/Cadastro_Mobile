@@ -14,4 +14,9 @@ public class Curso {
     public void setNomeCurso(String nomeCurso) {
         this.nomeCurso = nomeCurso;
     }
+
+    @Override
+    public String toString() {
+        return "Curso: " + nomeCurso;
+    }
 }

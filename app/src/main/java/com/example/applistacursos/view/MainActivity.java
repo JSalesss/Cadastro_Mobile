@@ -3,6 +3,7 @@ package com.example.applistacursos.view;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.applistacursos.R;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     editTelefone.getText().toString()
             );
             Curso curso = new Curso(editCurso.getText().toString());
-
+            
             pessoaController.salvarPessoa(pessoa);
             cursoController.salvarCurso(curso);
         });
@@ -55,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
             editTelefone.setText("");
         });
 
-        btnFinalizar.setOnClickListener(v -> finish());
+        btnFinalizar.setOnClickListener(v -> {
+            Toast.makeText(this, "Volte sempre! ", Toast.LENGTH_SHORT).show();
+            finish();
+        });
     }
 }

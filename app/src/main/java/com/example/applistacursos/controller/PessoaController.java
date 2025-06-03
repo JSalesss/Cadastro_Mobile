@@ -12,8 +12,7 @@ public class PessoaController {
     }
 
     public void salvarPessoa(Pessoa pessoa) {
-        String msg = "Pessoa salva: " + pessoa.getNome() + " " + pessoa.getSobrenome();
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, pessoa.toString(), Toast.LENGTH_SHORT).show();
     }
 }
 
