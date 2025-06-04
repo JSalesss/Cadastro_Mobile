@@ -1,5 +1,6 @@
 package com.example.applistacursos.view;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,10 +15,12 @@ import com.example.applistacursos.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText editNome, editSobrenome, editTelefone, editCurso;
-    private Button btnSalvar, btnLimpar, btnFinalizar;
-    private PessoaController pessoaController;
-    private CursoController cursoController;
+    EditText editNome, editSobrenome, editTelefone, editCurso;
+    Button btnSalvar, btnLimpar, btnFinalizar;
+    PessoaController pessoaController;
+    CursoController cursoController;
+    SharedPreferences preferences;
+    public static final String NAME_PREFERENCES = "pref_listavip";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +48,15 @@ public class MainActivity extends AppCompatActivity {
             );
             Curso curso = new Curso(editCurso.getText().toString());
 
-            pessoaController.salvarPessoa(pessoa);
-            pessoaController.salvar(pessoa);
-            pessoaController.toString();
+            preferences = getSharedPreferences(NAME_PREFERENCES, 0);
+            SharedPreferences.Editor listavip = preferences.edit();
+            listavip.putString("Nome: ", pessoa.getNome());
+            listavip.putString("Sobrenome", pessoa.getSobrenome());
+            listavip.putString("Telefone", pessoa.getTelefone());
+            listavip.putString("Curso", curso.getNomeCurso());
+            listavip.apply();
 
+            pessoaController.salvarPessoa(pessoa);
             cursoController.salvarCurso(curso);
         });
 
