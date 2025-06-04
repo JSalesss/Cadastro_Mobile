@@ -16,4 +16,3 @@ public class CursoController {
         Toast.makeText(context, curso.toString(), Toast.LENGTH_SHORT).show();
     }
 }
-
