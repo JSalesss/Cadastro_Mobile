@@ -44,8 +44,11 @@ public class MainActivity extends AppCompatActivity {
                     editTelefone.getText().toString()
             );
             Curso curso = new Curso(editCurso.getText().toString());
-            
+
             pessoaController.salvarPessoa(pessoa);
+            pessoaController.salvar(pessoa);
+            pessoaController.toString();
+
             cursoController.salvarCurso(curso);
         });
 
