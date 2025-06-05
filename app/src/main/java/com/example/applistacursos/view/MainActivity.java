@@ -1,12 +1,13 @@
 package com.example.applistacursos.view;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.applistacursos.R;
 import com.example.applistacursos.controller.CursoController;
 import com.example.applistacursos.controller.PessoaController;
@@ -15,12 +16,10 @@ import com.example.applistacursos.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText editNome, editSobrenome, editTelefone, editCurso;
-    Button btnSalvar, btnLimpar, btnFinalizar;
-    PessoaController pessoaController;
-    CursoController cursoController;
-    SharedPreferences preferences;
-    public static final String NAME_PREFERENCES = "pref_listavip";
+    private EditText editNome, editSobrenome, editTelefone, editCurso;
+    private Button btnSalvar, btnLimpar, btnFinalizar;
+    private PessoaController pessoaController;
+    private CursoController cursoController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,16 +47,10 @@ public class MainActivity extends AppCompatActivity {
             );
             Curso curso = new Curso(editCurso.getText().toString());
 
-            preferences = getSharedPreferences(NAME_PREFERENCES, 0);
-            SharedPreferences.Editor listavip = preferences.edit();
-            listavip.putString("Nome: ", pessoa.getNome());
-            listavip.putString("Sobrenome", pessoa.getSobrenome());
-            listavip.putString("Telefone", pessoa.getTelefone());
-            listavip.putString("Curso", curso.getNomeCurso());
-            listavip.apply();
-
             pessoaController.salvarPessoa(pessoa);
             cursoController.salvarCurso(curso);
+            Toast.makeText(this, pessoa.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, curso.toString(), Toast.LENGTH_SHORT).show();
         });
 
         btnLimpar.setOnClickListener(v -> {
@@ -65,11 +58,24 @@ public class MainActivity extends AppCompatActivity {
             editSobrenome.setText("");
             editCurso.setText("");
             editTelefone.setText("");
+
+            Toast.makeText(this, "Campos de dados limpos", Toast.LENGTH_SHORT).show();
         });
 
         btnFinalizar.setOnClickListener(v -> {
-            Toast.makeText(this, "Volte sempre! ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Volte sempre!", Toast.LENGTH_SHORT).show();
             finish();
         });
+        carregarDadosSalvos();
+    }
+
+    private void carregarDadosSalvos() {
+        Pessoa pessoa = pessoaController.carregarPessoa();
+        Curso curso = cursoController.carregarCurso();
+
+        editNome.setText(pessoa.getNome());
+        editSobrenome.setText(pessoa.getSobrenome());
+        editTelefone.setText(pessoa.getTelefone());
+        editCurso.setText(curso.getNomeCurso());
     }
 }
