@@ -2,7 +2,6 @@ package com.example.applistacursos.controller;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import com.example.applistacursos.model.Pessoa;
 
 public class PessoaController {
@@ -27,6 +26,7 @@ public class PessoaController {
         String telefone = sharedPreferences.getString("telefone", "");
         return new Pessoa(nome, sobrenome, telefone);
     }
+
     public void apagarPessoa(){
         sharedPreferences.edit().clear().apply();
     }

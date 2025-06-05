@@ -2,7 +2,6 @@ package com.example.applistacursos.controller;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import com.example.applistacursos.model.Curso;
 
 public class CursoController {

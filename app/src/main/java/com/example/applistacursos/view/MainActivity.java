@@ -4,10 +4,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.applistacursos.R;
 import com.example.applistacursos.controller.CursoController;
 import com.example.applistacursos.controller.PessoaController;
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     editTelefone.getText().toString()
             );
             Curso curso = new Curso(editCurso.getText().toString());
-
+            limparDados();
             pessoaController.salvarPessoa(pessoa);
             cursoController.salvarCurso(curso);
             Toast.makeText(this, pessoa.toString(), Toast.LENGTH_SHORT).show();
@@ -54,14 +52,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnLimpar.setOnClickListener(v -> {
-            editNome.setText("");
-            editSobrenome.setText("");
-            editCurso.setText("");
-            editTelefone.setText("");
-
+            limparDados();
             cursoController.apagarCurso();
             pessoaController.apagarPessoa();
-
             Toast.makeText(this, "Campos de dados limpos", Toast.LENGTH_SHORT).show();
         });
 
@@ -75,10 +68,17 @@ public class MainActivity extends AppCompatActivity {
     private void carregarDadosSalvos() {
         Pessoa pessoa = pessoaController.carregarPessoa();
         Curso curso = cursoController.carregarCurso();
-
         editNome.setText(pessoa.getNome());
         editSobrenome.setText(pessoa.getSobrenome());
         editTelefone.setText(pessoa.getTelefone());
         editCurso.setText(curso.getNomeCurso());
     }
+
+    private void limparDados(){
+        editNome.setText("");
+        editSobrenome.setText("");
+        editCurso.setText("");
+        editTelefone.setText("");
+    }
+
 }
