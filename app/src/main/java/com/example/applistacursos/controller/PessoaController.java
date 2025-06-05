@@ -27,4 +27,7 @@ public class PessoaController {
         String telefone = sharedPreferences.getString("telefone", "");
         return new Pessoa(nome, sobrenome, telefone);
     }
+    public void apagarPessoa(){
+        sharedPreferences.edit().clear().apply();
+    }
 }

@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
             editCurso.setText("");
             editTelefone.setText("");
 
+            cursoController.apagarCurso();
+            pessoaController.apagarPessoa();
+
             Toast.makeText(this, "Campos de dados limpos", Toast.LENGTH_SHORT).show();
         });
 
