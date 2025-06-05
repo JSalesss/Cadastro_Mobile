@@ -23,4 +23,8 @@ public class CursoController {
         String nomeCurso = sharedPreferences.getString("nomeCurso", "");
         return new Curso(nomeCurso);
     }
+
+    public void apagarCurso(){
+        sharedPreferences.edit().clear().apply();
+    }
 }
