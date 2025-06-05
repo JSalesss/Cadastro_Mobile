@@ -1,32 +1,30 @@
 package com.example.applistacursos.controller;
 
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
+import android.content.SharedPreferences;
 
 import com.example.applistacursos.model.Pessoa;
 
 public class PessoaController {
-    private final Context context;
+    private static final String PREFS_NAME = "lista_pref";
+    private final SharedPreferences sharedPreferences;
 
     public PessoaController(Context context) {
-        this.context = context;
+        sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
     }
 
     public void salvarPessoa(Pessoa pessoa) {
-        Toast.makeText(context, pessoa.toString(), Toast.LENGTH_SHORT).show();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("nome", pessoa.getNome());
+        editor.putString("sobrenome", pessoa.getSobrenome());
+        editor.putString("telefone", pessoa.getTelefone());
+        editor.apply();
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        Log.d("MVC_Controller", "Controller iniciado!");
-        return super.toString();
-    }
-
-    public void salvar(Pessoa pessoa){
-        Log.d("MVC_Controller", "Salvo " + pessoa.toString());
+    public Pessoa carregarPessoa() {
+        String nome = sharedPreferences.getString("nome", "");
+        String sobrenome = sharedPreferences.getString("sobrenome", "");
+        String telefone = sharedPreferences.getString("telefone", "");
+        return new Pessoa(nome, sobrenome, telefone);
     }
 }
