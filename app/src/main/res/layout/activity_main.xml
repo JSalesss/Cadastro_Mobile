@@ -25,27 +25,10 @@
         tools:ignore="TextSizeCheck" />
 
     <EditText
-        android:id="@+id/editTextText4"
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/txt_hint_edit_telefone_de_contato"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textAlignment="textStart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
         android:id="@+id/editTextText2"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/txt_hint_edit_sobrenome"
@@ -57,21 +40,48 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/editTextText4"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/txt_hint_edit_nome_do_curso"
-        android:importantForAutofill="no"
+        android:hint="@string/txt_hint_edit_telefone_de_contato"
         android:inputType="text"
         android:minHeight="48dp"
         android:textAlignment="textStart"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextText2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/finalizar"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="184dp"
+        android:text="@string/txt_button_finalizar"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_cursos"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="VisualLintButtonSize" />
+
+    <Button
+        android:id="@+id/salvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/txt_button_salvar"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/finalizar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_cursos" />
 
     <EditText
         android:id="@+id/editTextText"
@@ -89,41 +99,25 @@
         app:layout_constraintTop_toBottomOf="@+id/titulo" />
 
     <Button
-        android:id="@+id/finalizar"
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="184dp"
-        android:text="@string/txt_button_finalizar"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="VisualLintButtonSize" />
-
-    <Button
-        android:id="@+id/salvar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_button_salvar"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/finalizar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4"
-        app:layout_constraintVertical_bias="0.488" />
-
-    <Button
         android:id="@+id/limpar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="@string/txt_button_limpar"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/finalizar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_cursos" />
+
+    <Spinner
+        android:id="@+id/spinner_cursos"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
 

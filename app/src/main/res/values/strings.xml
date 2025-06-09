@@ -8,4 +8,49 @@
     <string name="txt_button_salvar">SALVAR</string>
     <string name="txt_button_limpar">LIMPAR</string>
     <string name="txt_button_finalizar">FINALIZAR</string>
+
+    <string-array name="lista_cursos">
+        <item>Selecione um curso</item>
+        <item>Administração</item>
+        <item>Análise e Desenvolvimento de Sistemas</item>
+        <item>Arquitetura e Urbanismo</item>
+        <item>Banco de Dados</item>
+        <item>Biomedicina</item>
+        <item>Ciência da Computação</item>
+        <item>Ciência de Dados</item>
+        <item>Ciências Contábeis</item>
+        <item>Cybersegurança</item>
+        <item>Desenvolvimento Back-end</item>
+        <item>Desenvolvimento de Games</item>
+        <item>Desenvolvimento Front-end</item>
+        <item>Direito</item>
+        <item>Educação Física</item>
+        <item>Engenharia Civil</item>
+        <item>Engenharia da Computação</item>
+        <item>Engenharia de Produção</item>
+        <item>Engenharia Elétrica</item>
+        <item>Engenharia de Software</item>
+        <item>Farmácia</item>
+        <item>Fisioterapia</item>
+        <item>Inteligência Artificial</item>
+        <item>Jornalismo</item>
+        <item>Marketing</item>
+        <item>Medicina</item>
+        <item>Medicina Veterinária</item>
+        <item>Negócios Digitais</item>
+        <item>Nutrição</item>
+        <item>Pedagogia</item>
+        <item>Processamento de Dados</item>
+        <item>Programação para Dispositivos Móveis</item>
+        <item>Psicologia</item>
+        <item>Publicidade e Propaganda</item>
+        <item>Recursos Humanos</item>
+        <item>Redes de Computadores</item>
+        <item>Robótica Industrial</item>
+        <item>Serviço Social</item>
+        <item>Sistemas da Informação</item>
+        <item>Sistemas para Internet</item>
+        <item>Tecnologia da Informação</item>
+        <item>Turismo</item>
+    </string-array>
 </resources>
