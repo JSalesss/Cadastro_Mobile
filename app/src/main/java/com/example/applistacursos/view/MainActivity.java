@@ -1,20 +1,16 @@
 package com.example.applistacursos.view;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.applistacursos.R;
 import com.example.applistacursos.controller.CursoController;
 import com.example.applistacursos.controller.PessoaController;
+import com.example.applistacursos.controller.SpinnerController;
 import com.example.applistacursos.model.Curso;
 import com.example.applistacursos.model.Pessoa;
 
@@ -24,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnSalvar, btnLimpar, btnFinalizar;
     private PessoaController pessoaController;
     private CursoController cursoController;
+    private SpinnerController spinnerController;
     private Spinner spinner;
 
     @Override
@@ -32,63 +29,47 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        spinner = findViewById(R.id.spinner_cursos);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.lista_cursos,
-                android.R.layout.simple_spinner_item
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedCourse = parent.getItemAtPosition(position).toString();
-                Toast.makeText(MainActivity.this, "Selecionado: " + selectedCourse, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        pessoaController = new PessoaController(this);
-        cursoController = new CursoController(this);
-
         editNome = findViewById(R.id.editTextText);
         editSobrenome = findViewById(R.id.editTextText2);
         editTelefone = findViewById(R.id.editTextText4);
+        spinner = findViewById(R.id.spinner_cursos);
 
         btnSalvar = findViewById(R.id.salvar);
         btnLimpar = findViewById(R.id.limpar);
         btnFinalizar = findViewById(R.id.finalizar);
 
-        btnSalvar.setOnClickListener(v -> {
-            String cursoSelecionado = spinner.getSelectedItem().toString();
+        pessoaController = new PessoaController(this);
+        cursoController = new CursoController(this);
+        spinnerController = new SpinnerController(this, spinner);
+
+        btnSalvar.setOnClickListener(view -> {
             Pessoa pessoa = new Pessoa(
                     editNome.getText().toString(),
                     editSobrenome.getText().toString(),
                     editTelefone.getText().toString()
             );
-            Curso curso = new Curso(
-                    cursoSelecionado
-            );
+            String cursoSelecionado = spinnerController.getCursoSelecionado();
+            if (!pessoaController.validarPessoa(pessoa) || cursoSelecionado.equals("Selecione um curso")) {
+                Toast.makeText(this, "Preencha todos os campos corretamente!", Toast.LENGTH_SHORT).show();
+                return;
+            }
             limparDados();
             pessoaController.salvarPessoa(pessoa);
-            cursoController.salvarCurso(curso);
-            Toast.makeText(this, pessoa.toString(), Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, curso.toString(), Toast.LENGTH_SHORT).show();
+            cursoController.salvarCurso(new Curso(cursoSelecionado));
+            Toast.makeText(this, "Dados salvos com sucesso!", Toast.LENGTH_SHORT).show();
         });
 
-        btnLimpar.setOnClickListener(v -> {
-            limparDados();
-            cursoController.apagarCurso();
+        btnLimpar.setOnClickListener(view ->  {
             pessoaController.apagarPessoa();
-            spinner.setSelection(0);
-            Toast.makeText(this, "Campos de dados limpos", Toast.LENGTH_SHORT).show();
+            cursoController.apagarCurso();
+            editNome.setText("");
+            editSobrenome.setText("");
+            editTelefone.setText("");
+            spinnerController.resetar();
+            Toast.makeText(this, "Campos limpos", Toast.LENGTH_SHORT).show();
         });
 
-        btnFinalizar.setOnClickListener(v -> {
+        btnFinalizar.setOnClickListener(view ->  {
             Toast.makeText(this, "Volte sempre!", Toast.LENGTH_SHORT).show();
             finish();
         });
@@ -98,23 +79,17 @@ public class MainActivity extends AppCompatActivity {
     private void carregarDadosSalvos() {
         Pessoa pessoa = pessoaController.carregarPessoa();
         Curso curso = cursoController.carregarCurso();
+
         editNome.setText(pessoa.getNome());
         editSobrenome.setText(pessoa.getSobrenome());
         editTelefone.setText(pessoa.getTelefone());
-
-        String cursoSalvo = curso.getNomeCurso();
-
-        ArrayAdapter <CharSequence> adapter = (ArrayAdapter<CharSequence>) spinner.getAdapter();
-
-        int position = adapter.getPosition(cursoSalvo);
-            if (position >= 0) {
-                spinner.setSelection(position);
-            }
+        spinnerController.selecionarCurso(curso.getNomeCurso());
     }
 
-    private void limparDados() {
+    private void limparDados(){
         editNome.setText("");
         editSobrenome.setText("");
         editTelefone.setText("");
+        spinnerController.resetar();
     }
 }

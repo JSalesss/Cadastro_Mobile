@@ -21,13 +21,20 @@ public class PessoaController {
     }
 
     public Pessoa carregarPessoa() {
-        String nome = sharedPreferences.getString("nome", "");
-        String sobrenome = sharedPreferences.getString("sobrenome", "");
-        String telefone = sharedPreferences.getString("telefone", "");
-        return new Pessoa(nome, sobrenome, telefone);
+        return new Pessoa(
+                sharedPreferences.getString("nome", ""),
+                sharedPreferences.getString("sobrenome", ""),
+                sharedPreferences.getString("telefone", "")
+        );
     }
 
-    public void apagarPessoa(){
+    public void apagarPessoa() {
         sharedPreferences.edit().clear().apply();
+    }
+
+    public boolean validarPessoa(Pessoa pessoa) {
+        return !pessoa.getNome().isEmpty()
+                && !pessoa.getSobrenome().isEmpty()
+                && !pessoa.getTelefone().isEmpty();
     }
 }

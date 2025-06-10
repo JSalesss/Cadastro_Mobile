@@ -7,6 +7,7 @@ import com.example.applistacursos.model.Curso;
 public class CursoController {
     private static final String PREFS_NAME = "lista_pref";
     private final SharedPreferences sharedPreferences;
+    private Curso curso;
 
     public CursoController(Context context) {
         sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
