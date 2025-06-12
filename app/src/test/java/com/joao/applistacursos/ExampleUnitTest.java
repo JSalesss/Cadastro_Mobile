@@ -1,4 +1,4 @@
-package com.example.applistacursos;
+package com.joao.applistacursos;
 
 import org.junit.Test;
 

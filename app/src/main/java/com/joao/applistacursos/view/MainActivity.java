@@ -1,4 +1,4 @@
-package com.example.applistacursos.view;
+package com.joao.applistacursos.view;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -8,11 +8,12 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.applistacursos.R;
-import com.example.applistacursos.controller.CursoController;
-import com.example.applistacursos.controller.PessoaController;
-import com.example.applistacursos.controller.SpinnerController;
-import com.example.applistacursos.model.Curso;
-import com.example.applistacursos.model.Pessoa;
+import com.joao.applistacursos.controller.ControllerDB;
+import com.joao.applistacursos.controller.CursoController;
+import com.joao.applistacursos.controller.PessoaController;
+import com.joao.applistacursos.controller.SpinnerController;
+import com.joao.applistacursos.model.Curso;
+import com.joao.applistacursos.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,7 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
         pessoaController = new PessoaController(this);
         cursoController = new CursoController(this);
+        Curso curso = new Curso(this);
         spinnerController = new SpinnerController(this, spinner);
+
+        ControllerDB db = new ControllerDB(this);
 
         btnSalvar.setOnClickListener(view -> {
             Pessoa pessoa = new Pessoa(
@@ -49,11 +53,13 @@ public class MainActivity extends AppCompatActivity {
                     editTelefone.getText().toString()
             );
             String cursoSelecionado = spinnerController.getCursoSelecionado();
+
             if (!pessoaController.validarPessoa(pessoa) || cursoSelecionado.equals("Selecione um curso")) {
                 Toast.makeText(this, "Preencha todos os campos corretamente!", Toast.LENGTH_SHORT).show();
                 return;
             }
-            limparDados();
+
+            db.inserirDados(pessoa.getNome(),pessoa.getSobrenome(), pessoa.getTelefone(), curso.getNomeCurso());
             pessoaController.salvarPessoa(pessoa);
             cursoController.salvarCurso(new Curso(cursoSelecionado));
             Toast.makeText(this, "Dados salvos com sucesso!", Toast.LENGTH_SHORT).show();
@@ -84,12 +90,5 @@ public class MainActivity extends AppCompatActivity {
         editSobrenome.setText(pessoa.getSobrenome());
         editTelefone.setText(pessoa.getTelefone());
         spinnerController.selecionarCurso(curso.getNomeCurso());
-    }
-
-    private void limparDados(){
-        editNome.setText("");
-        editSobrenome.setText("");
-        editTelefone.setText("");
-        spinnerController.resetar();
     }
 }

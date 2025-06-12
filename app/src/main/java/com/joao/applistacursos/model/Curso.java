@@ -1,7 +1,12 @@
-package com.example.applistacursos.model;
+package com.joao.applistacursos.model;
+
+import android.content.Context;
 
 public class Curso {
+
     private String nomeCurso;
+
+    public Curso (Context context){}
 
     public Curso(String nomeCurso) {
         this.nomeCurso = nomeCurso;

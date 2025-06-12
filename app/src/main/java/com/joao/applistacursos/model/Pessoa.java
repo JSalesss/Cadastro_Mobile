@@ -1,4 +1,4 @@
-package com.example.applistacursos.model;
+package com.joao.applistacursos.model;
 
 public class Pessoa {
     private String nome;

@@ -1,8 +1,8 @@
-package com.example.applistacursos.controller;
+package com.joao.applistacursos.controller;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import com.example.applistacursos.model.Curso;
+import com.joao.applistacursos.model.Curso;
 
 public class CursoController {
     private static final String PREFS_NAME = "lista_pref";
